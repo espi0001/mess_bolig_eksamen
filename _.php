@@ -1,5 +1,5 @@
-<!-- VALIDATION -->
 <?php
+// VALIDATION //
 
 // XSS-safe
 function _($text) {
