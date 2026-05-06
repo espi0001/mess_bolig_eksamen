@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/db.php";
+require_once __DIR__ . "/../db.php";
 
 $sql = "SELECT * FROM items";
 $stmt = $_db->prepare($sql);

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__."/db.php";
+require_once __DIR__."/../db.php";
 
 $pk   = $_GET["key"] ?? "";
 $sql  = "SELECT * FROM items WHERE pk = :pk";
@@ -26,7 +26,7 @@ if(!$item){
         <?php endif; ?>
 
         <div class="item-info">
-            <h2 class="item-type"><?= $item["type"] ?> </h2>
+            <h2 class="item-type"><?= $item["type"] ?></h2>
             <h2><?= number_format((float)($item["price"] ?? 0), 0, ',', '.') ?> kr.</h2>
         </div>
 
@@ -34,11 +34,22 @@ if(!$item){
 
         </div>
 
-        <div class="item-status">
-            <span class="status-available">Ledig</span>
-        </div>
+<div class="item-status">
+    <?php if($item["is_sold"]): ?>
+        <span class="status-sold">Solgt</span>
+    <?php else: ?>
+        <span class="status-available">Ledig</span>
+    <?php endif; ?>
+</div>
 
-        <button class="btn-primary">Køb bolig</button>
+<?php if(!$item["is_sold"]): ?>
+    <form mix-post="apis/api-buy-item.php" mix-update="#buy-section">
+        <input type="hidden" name="key" value="<?= $item["pk"] ?>">
+        <button id="buy-section" class="btn-primary" type="submit">
+            Køb bolig
+        </button>
+    </form>
+<?php endif; ?>
 
     </section>
 </browser>
