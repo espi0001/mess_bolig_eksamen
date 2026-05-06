@@ -31,10 +31,40 @@ if(!$item){
 
             <div class="item-info">
                 <h2 class="item-type"><?= $item["type"] ?> </h2>
-                <h2><?= number_format((float)($item["price"] ?? 0), 0, ',', '.') ?> kr.</h2>
+                <h2>DKK <?= number_format((float)($item["price"] ?? 0), 0, ',', '.') ?></h2>
             </div>
 
             <div class="item-stats">
+                <div>
+                    <h3>Adresse</h3>
+                    <p><?= $item["road_name"] ?> <?= $item["house_number"] ?>, <?= $item["zip_code"] ?> <?= $item["city_name"] ?>  </p>
+                </div>
+                <div>
+                    <h3>Grundareal</h3>
+                    <p><?= $item["lot_square_meters"] ?> m²</p>
+                </div>
+                <div>
+                    <h3>Boligareal</h3>
+                    <p><?= $item["floor_square_meters"] ?> m²</p>
+                </div>
+                <div>
+                    <h3>Pris per. meter</h3>
+                    <p>DKK <?= number_format((float)($item["price_per_meter"] ?? 0), 0, ',', '.') ?></p>
+                </div>
+                <div>
+                    <h3>Antal værelser</h3>
+                    <p><?= $item["number_of_rooms"] ?></p>
+                </div>
+                <div>
+                    <h3>Månedlige ydelser</h3>
+                    <p>DKK <?= number_format((float)($item["monthly_expenses"] ?? 0), 0, ',', '.') ?></p>
+                </div>
+                <?php if($item["energy_label"]): ?>
+                <div>
+                    <h3>Energimærke</h3>
+                    <p><?= $item["energy_label"] ?></p>
+                </div>   
+                <?php endif; ?>        
             </div>
         </div>
 
