@@ -1,5 +1,6 @@
+<!-- sætter title variablen, som bruges i vores header > til at sætte <title> i browseren  -->
 <?php
-$title = "Messbolig";
+$title = "MessBolig";
 require_once __DIR__."/../components/_header.php";
 ?>
 
@@ -9,6 +10,7 @@ require_once __DIR__."/../components/_header.php";
         <p>Klik på en bolig på kortet for at se detaljer</p>
     </aside>
 </main>
+
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
@@ -22,6 +24,7 @@ require_once __DIR__."/../components/_header.php";
 
     const markers = L.layerGroup().addTo(map);
     
+// Når siden er loadet, klik automatisk på "hent boliger" knappen    
 window.addEventListener('load', () => {
     fetch('/api-get-items.php')
         .then(response => {
