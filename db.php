@@ -3,7 +3,7 @@
 try{
   $dbUserName = 'root';
   $dbPassword = 'password'; // root | admin
-  $dbConnection = 'mysql:host=mariadb; dbname=2026_1_php; charset=utf8mb4'; 
+  $dbConnection = 'mysql:host=mariadb; dbname=mess_bolig_eksamen; charset=utf8mb4'; 
   // utf8 every character in the world
   // mb4 every character and also emojies
   $options = [

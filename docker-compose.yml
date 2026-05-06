@@ -16,7 +16,7 @@ services:
     container_name: mess_bolig_eksamen_1_mariadb
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: 2026_1_php
+      MYSQL_DATABASE: mess_bolig_eksamen
     volumes:
       - mariadb_data:/var/lib/mysql
     ports:
