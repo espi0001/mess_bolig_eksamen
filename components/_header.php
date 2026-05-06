@@ -36,7 +36,7 @@
 
         <div class="nav-right">
         <!-- <button mix-get="api-get-items">Hent boliger</button> -->
-        <a href="/login" class="btn-login">Login</a>
+        <a href="/../pages/page-login.php" class="btn-login">Login</a>
         </div>
 
     </nav>
