@@ -20,7 +20,7 @@
     
     <!-- Titel på siden -->
     <title>
-        <?php echo $title ?? 'Messbolig' ?>
+        <?php echo $title ?? 'MessBolig' ?>
     </title>
 </head>
 <body>
@@ -32,7 +32,7 @@
 
     -->
     <nav>
-        <a href="/" class="logo">Messbolig</a>
+        <a href="/" class="logo">MessBolig</a>
 
         <div class="nav-right">
         <!-- <button mix-get="api-get-items">Hent boliger</button> -->
