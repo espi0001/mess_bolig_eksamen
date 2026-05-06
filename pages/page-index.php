@@ -31,7 +31,7 @@ window.addEventListener('load', () => {
             if (!response.ok) {
                 throw new Error('Failed to load items');
             }
-            return response.text();
+            return response.json();
         })
         .then(load_markers)
         .catch(error => {
