@@ -13,7 +13,7 @@ require_once __DIR__."/../components/_header.php";
 
         <button mix-post="/../apis/api-login" mix-update="#login-response">Log ind</button>
 
-        <p>Har du ikke en konto? <a href="/pages/page-signup.php">Opret bruger</a></p>
+        <p>Har du ikke en konto? <a href="signup">Opret bruger</a></p>
     </div>
 </main>
 

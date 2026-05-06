@@ -11,10 +11,10 @@ require_once __DIR__."/../components/_header.php";
         <input type="email" name="user_email" placeholder="Email">
         <input type="text" name="user_username" placeholder="Brugernavn">
         <input type="password" name="user_password" placeholder="Kodeord">
-        
+
         <button mix-post="api-sign-up" mix-update="#signup-response">Opret bruger</button>
 
-        <p>Har du allerede en konto? <a href="/pages/page-login.php">Log ind</a></p>
+        <p>Har du allerede en konto? <a href="login">Log ind</a></p>
     </div>
 </main>
 

@@ -1,8 +1,11 @@
 # Tænder Apache's rewrite-engine, så URL'er kan omskrives
 RewriteEngine On
 
+
 # Går til page-index direkte når URL er tom (forsiden)
 RewriteRule ^$  pages/page-index.php  [NC,L]
+RewriteRule ^login$ pages/page-login.php [NC,L]
+RewriteRule ^signup$ pages/page-signup.php [NC,L]
 
 # Generic extensionless PHP routing
 
