@@ -1,18 +1,22 @@
-RewriteEngine On # Tænder Apache’s rewrite-engine, så URL’er kan omskrives
+# Tænder Apache's rewrite-engine, så URL'er kan omskrives
+RewriteEngine On
 
+# Går til page-index direkte når URL er tom (forsiden)
+RewriteRule ^$  pages/page-index.php  [NC,L]
 
-RewriteRule ^$      /pages/page-index.php    [NC,L] # går til page-index direkte
+# Generic extensionless PHP routing
 
-
-# generic extensionless PHP routing
+# Tjekker om den ønskede fil ikke allerede findes fysisk på serveren
 RewriteCond %{REQUEST_FILENAME} !-f
+
+# Tjekker om den ønskede mappe ikke allerede findes fysisk på serveren
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([^\.]+)$ $1.php [NC,L] # laver friendly URL
 
+# Tjekker om URL'en ikke er en billede, video, etc. og forhindrer omskrivning
+RewriteCond %{REQUEST_URI} !(\.png|\.jpg|\.webp|\.gif|\.jpeg|\.zip|\.css|\.svg|\.js|\.pdf)$
 
-ErrorDocument 404 pages/page-404.php # If page is not found, will redirect to 404.php
+# Laver friendly URL ved at tilføje .php og pages/ sti
+RewriteRule ^([^\.]+)$ pages/$1.php [NC,L]
 
-
-RewriteCond %{REQUEST_FILENAME} !-f # Tjekker om den ønskede fil ikke allerede findes fysisk på serveren
-
-RewriteCond %{REQUEST_URI}  !(\.png|\.jpg|\.webp|\.gif|\.jpeg|\.zip|\.css|\.svg|\.js|\.pdf)$ # Tjekker om den ønskede fil er en billede, video, etc. og kan ikke blive omskrevet
+# Hvis siden ikke findes, redirect til 404-siden
+ErrorDocument 404 /pages/page-404.php
