@@ -59,6 +59,10 @@ if(!$item){
                     <h3>Månedlige ydelser</h3>
                     <p>DKK <?= number_format((float)($item["monthly_expenses"] ?? 0), 0, ',', '.') ?></p>
                 </div>
+                <div>
+                    <h3>Antal dage på markedet</h3>
+                    <p><?= number_format((float)($item["days_listed"] ?? 0), 0, ',', '.') ?> dage</p>
+                </div>
                 <?php if($item["energy_label"]): ?>
                 <div>
                     <h3>Energimærke</h3>
