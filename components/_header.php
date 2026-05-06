@@ -1,7 +1,3 @@
-<!-- <?php
-require_once __DIR__."/_.php";
-?> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +5,7 @@ require_once __DIR__."/_.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Link til CSS fil -->
-    <link rel="stylesheet" href="/static/app.css">
+    <link rel="stylesheet" href="../static/app.css">
 
     <!-- Link til Leaflet CSS -->
     <link 
@@ -19,8 +15,8 @@ require_once __DIR__."/_.php";
 
 
     <!-- Link til JavaScript filer -->
-    <script src="/static/app.js"></script>
-    <script src="/static/mixhtml.js"></script>
+    <script src="../static/app.js"></script>
+    <script src="../static/mixhtml.js"></script>
     
     <!-- Titel på siden -->
     <title>
