@@ -90,6 +90,29 @@ main {
     gap: 1rem;
 }
 
+.item-main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.item-sold {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+
 .item-img {
     width: 100%;
     border-radius: 8px;
@@ -157,6 +180,17 @@ main {
     font-size: 0.8rem;
     font-weight: 600;
 }
+
+.status-sold {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+
 
 .btn-primary {
     background: #e84040;
