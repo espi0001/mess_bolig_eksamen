@@ -1,19 +1,30 @@
+<!-- <?php
+require_once __DIR__."/_.php";
+?> -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Link til CSS fil -->
     <link rel="stylesheet" href="/static/app.css">
 
+    <!-- Link til Leaflet CSS -->
     <link 
         rel="stylesheet" 
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
 
 
+    <!-- Link til JavaScript filer -->
+    <script src="/static/app.js"></script>
+    <script src="/static/mixhtml.js"></script>
+    
+    <!-- Titel på siden -->
     <title>
-        <?php echo $title ?? 'Company' ?>
+        <?php echo $title ?? 'Messbolig' ?>
     </title>
 </head>
 <body>
@@ -25,13 +36,11 @@
 
     -->
     <nav>
-        <a href="/" class="<?= $active == 'index' ? 'active' : '' ?>">
-            Home
-        </a>
-        <a href="/contact-us" class="<?= $active == 'contact' ? 'active' : '' ?>">
-            Contact us
-        </a>
-        <a href="/about-us" class="<?= $active == 'about' ? 'active' : '' ?>">
-            About us
-        </a>
+        <a href="/" class="logo">Messbolig</a>
+
+        <div class="nav-right">
+        <!-- <button mix-get="api-get-items">Hent boliger</button> -->
+        <a href="/login" class="btn-login">Login</a>
+        </div>
+
     </nav>
