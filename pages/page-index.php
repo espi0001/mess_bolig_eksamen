@@ -27,4 +27,4 @@ window.addEventListener('load', () => {
 });
 </script>
 
-<?php require_once __DIR__."/../compenents/_footer.php"; ?>
+<?php require_once __DIR__."/../components/_footer.php"; ?>
