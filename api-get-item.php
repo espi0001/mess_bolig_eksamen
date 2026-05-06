@@ -26,7 +26,7 @@ if(!$item){
         <?php endif; ?>
 
         <div class="item-info">
-            <h2><?= $item["type"] ?> </h2>
+            <h2 class="item-type"><?= $item["type"] ?> </h2>
             <h2><?= number_format((float)($item["price"] ?? 0), 0, ',', '.') ?> kr.</h2>
         </div>
 
