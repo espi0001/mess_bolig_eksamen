@@ -23,8 +23,18 @@ require_once __DIR__."/../components/_header.php";
     const markers = L.layerGroup().addTo(map);
     
 window.addEventListener('load', () => {
-    document.querySelector('[mix-get="api-get-items"]').click();
+    fetch('/api-get-items.php')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to load items');
+            }
+            return response.text();
+        })
+        .then(load_markers)
+        .catch(error => {
+            console.error('Could not render map items:', error);
+        });
 });
 </script>
 
-<?php require_once __DIR__."/../components/_footer.php"; ?>
+<?php require_once __DIR__."/../components/_footer.php"; ?> 
