@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Link til CSS fil -->
-    <link rel="stylesheet" href="../static/app.css">
+    <link rel="stylesheet" href="/static/app.css">
 
     <!-- Link til Leaflet CSS -->
     <link 
@@ -15,8 +15,8 @@
 
 
     <!-- Link til JavaScript filer -->
-    <script src="../static/app.js"></script>
-    <script src="../static/mixhtml.js"></script>
+    <script src="/static/app.js" defer></script>
+    <script src="/static/mixhtml.js" defer></script>
     
     <!-- Titel på siden -->
     <title>
@@ -36,7 +36,7 @@
 
         <div class="nav-right">
         <!-- <button mix-get="api-get-items">Hent boliger</button> -->
-        <a href="/login" class="btn-login">Login</a>
+        <a href="login" class="btn-login">Login</a>
         </div>
 
     </nav>
