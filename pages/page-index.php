@@ -24,7 +24,7 @@ require_once __DIR__."/../components/_header.php";
 
     const markers = L.layerGroup().addTo(map);
     
-// Når siden er loadet, klik automatisk på "hent boliger" knappen    
+// Når siden er loadet bliver boliger hentet fra api-get-items.php og renderet på kortet.  
 window.addEventListener('load', () => {
     fetch('/api-get-items.php')
         .then(response => {
