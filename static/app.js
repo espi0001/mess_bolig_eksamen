@@ -14,3 +14,15 @@ function load_markers(items) {
 
   mix_convert();
 }
+
+function fetch_and_load_items(typeQuery = "") {
+  const url = `/apis/api-search-items.php?q=${encodeURIComponent(typeQuery)}`;
+  return fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to load items");
+      }
+      return response.json();
+    })
+    .then(load_markers);
+}

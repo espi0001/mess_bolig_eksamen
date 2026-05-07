@@ -35,6 +35,7 @@
         <a href="/" class="logo">MessBolig</a>
 
         <div class="nav-right">
+        <input id="type-search" type="text" placeholder="Søg boligtype (fx villa)">
         <!-- <button mix-get="api-get-items">Hent boliger</button> -->
         <a href="login" class="btn-login">Login</a>
         </div>

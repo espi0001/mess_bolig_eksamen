@@ -26,17 +26,17 @@ require_once __DIR__."/../components/_header.php";
     
 // Når siden er loadet bliver boliger hentet fra api-get-items.php og renderet på kortet.  
 window.addEventListener('load', () => {
-    fetch('/apis/api-get-items.php')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to load items');
-            }
-            return response.json();
-        })
-        .then(load_markers)
-        .catch(error => {
-            console.error('Could not render map items:', error);
+    const searchInput = document.querySelector('#type-search');
+
+    fetch_and_load_items().catch(error => {
+        console.error('Could not render map items:', error);
+    });
+
+    searchInput.addEventListener('input', event => {
+        fetch_and_load_items(event.target.value).catch(error => {
+            console.error('Could not search map items:', error);
         });
+    });
 });
 </script>
 
