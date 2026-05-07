@@ -26,7 +26,7 @@ require_once __DIR__."/../components/_header.php";
     
 // Når siden er loadet bliver boliger hentet fra api-get-items.php og renderet på kortet.  
 window.addEventListener('load', () => {
-    fetch('../apis/api-get-items.php')
+    fetch('/apis/api-get-items.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to load items');
