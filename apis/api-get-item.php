@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__."/db.php";
+require_once __DIR__."/../db.php";
 
 $pk   = $_GET["key"] ?? "";
 $sql  = "SELECT * FROM items WHERE pk = :pk";
@@ -80,7 +80,14 @@ if(!$item){
             <?php endif; ?>
         </div>
 
-        <button class="btn-primary">Køb bolig</button>
+<?php if(!$item["is_sold"]): ?>
+    <form mix-post="apis/api-buy-item.php" mix-update="#buy-section">
+        <input type="hidden" name="key" value="<?= $item["pk"] ?>">
+        <button id="buy-section" class="btn-primary" type="submit">
+            Køb bolig
+        </button>
+    </form>
+<?php endif; ?>
 
     </section>
 </browser>
