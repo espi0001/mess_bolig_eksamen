@@ -9,9 +9,9 @@ require_once __DIR__."/../components/_header.php";
         <div id="signup-response"></div>
 
         <form mix-post="/apis/api-signup.php" mix-update="#signup-response">
-            <input type="email" name="user_email" placeholder="Email" value="tester@gmail.com">
-            <input type="text" name="user_username" placeholder="Brugernavn" value="user1234">
-            <input type="password" name="user_password" placeholder="Kodeord" value="password">
+            <input type="email" name="user_email" placeholder="Email">
+            <input type="text" name="user_username" placeholder="Brugernavn">
+            <input type="password" name="user_password" placeholder="Kodeord">
         
             <button type="submit">Opret bruger</button>
         </form>
