@@ -30,6 +30,7 @@ try {
     if(!$user){
         http_response_code(401); // 401 = Unauthorized
         _("Forkert email eller password");
+        echo '<div mix-update="#login-response">Forkert email eller password</div>';
         exit;
     }
 
@@ -37,6 +38,7 @@ try {
     if(!password_verify($user_password, $user["user_password"])){
         http_response_code(401);
         _("Forkert email eller password");
+        echo '<div mix-update="#login-response">Forkert email eller password</div>';
         exit;
     }
 
@@ -48,12 +50,23 @@ try {
 
     // Send succesbesked 
     _("Logget ind som ".$user["user_username"]);
+    echo '<span mix-redirect="/"></span>';
+    /*    $safe_name = htmlspecialchars($user["user_username"], ENT_QUOTES, 'UTF-8');
+    echo '<div mix-update="#login-response">Logget ind som ' . $safe_name . '</div>'; */
     exit;
 
 } catch(Exception $e) {
     // Send fejlkode og besked tilbage
     http_response_code($e->getCode());
     _($e->getMessage());
+ /*       $code = $e->getCode();
+    if ($code < 100 || $code > 599) {
+        $code = 500;
+    }
+    http_response_code($code);
+    $msg = htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
+    echo '<div mix-update="#login-response">' . $msg . '</div>';
+    */
     exit;
 }
 

@@ -1,3 +1,9 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,8 +41,11 @@
         <a href="/" class="logo">MessBolig</a>
 
         <div class="nav-right">
-        <!-- <button mix-get="api-get-items">Hent boliger</button> -->
-        <a href="login" class="btn-login">Login</a>
+        <?php if (!empty($_SESSION['user_pk'])): ?>
+        <a href="/apis/api-logout.php" class="btn-login">Log ud</a>
+        <?php else: ?>
+        <a href="/login" class="btn-login<?php echo ($active ?? '') === 'login' ? ' active' : ''; ?>">Login</a>
+        <?php endif; ?>
         </div>
 
     </nav>

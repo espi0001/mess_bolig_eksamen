@@ -1,5 +1,5 @@
-<!-- sætter title variablen, som bruges i vores header > til at sætte <title> i browseren  -->
 <?php
+// sætter title variablen, som bruges i vores header > til at sætte <title> i browseren 
 $title = "MessBolig";
 require_once __DIR__."/../components/_header.php";
 ?>
