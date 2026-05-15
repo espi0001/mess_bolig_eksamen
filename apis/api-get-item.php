@@ -9,6 +9,7 @@ $stmt->execute();
 $item = $stmt->fetch();
 
 if(!$item){
+    http_response_code(404);
     echo "<browser mix-update='#aside'><p>Bolig ikke fundet</p></browser>";
     exit;
 }
