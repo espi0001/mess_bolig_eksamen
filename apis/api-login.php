@@ -3,20 +3,8 @@ try {
     require_once __DIR__ . "/../private/_.php";
 
     // Hent email og password fra POST-request
-    $user_email = $_POST["user_email"] ?? "";
-    $user_password = $_POST["user_password"] ?? "";
-
-    // Tjek at email og password ikke er tomme
-    if(strlen($user_email) < user_email_min){
-        http_response_code(400);
-        echo "<browser mix-update='#email-error'>Email mangler</browser>";
-        exit;
-    }
-    if(strlen($user_password) < user_password_min){
-        http_response_code(400);
-        echo "<browser mix-update='#password-error'>Password mangler</browser>";
-        exit;
-    }
+    $user_email = _validate_user_email();
+    $user_password = _validate_user_password();
 
     // Opret forbindelse til DB
     require_once __DIR__."/../private/db.php";
