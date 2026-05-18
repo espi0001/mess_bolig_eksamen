@@ -15,35 +15,30 @@ function load_markers(items) {
   mix_convert();
 }
 
-
-// Signup 
-document.getElementById('user_username').addEventListener('input', function() {
-    if(this.value.trim().length >= 2) {
-        document.getElementById('username-error').textContent = '';
+// Signup
+const usernameInput = document.getElementById("user_username");
+if (usernameInput) {
+  usernameInput.addEventListener("input", function () {
+    if (this.value.trim().length >= 2) {
+      document.getElementById("username-error").textContent = "";
     }
-});
+  });
+}
 
-document.getElementById('user_email').addEventListener('input', function() {
-    if(this.value.trim().length >= 6) {
-        document.getElementById('email-error').textContent = '';
+const emailInput = document.getElementById("user_email");
+if (emailInput) {
+  emailInput.addEventListener("input", function () {
+    if (this.value.trim().length >= 6) {
+      document.getElementById("email-error").textContent = "";
     }
-});
+  });
+}
 
-document.getElementById('user_password').addEventListener('input', function() {
-    if(this.value.trim().length >= 6 && this.value.trim().length <= 50) {
-        document.getElementById('password-error').textContent = '';
+const passwordInput = document.getElementById("user_password");
+if (passwordInput) {
+  passwordInput.addEventListener("input", function () {
+    if (this.value.trim().length >= 6 && this.value.trim().length <= 50) {
+      document.getElementById("password-error").textContent = "";
     }
-});
-
-
-// Login
-document.getElementById('user_email').addEventListener('input', function() {
-    if(this.value.trim().length >= 6) {
-        document.getElementById('email-error').textContent = '';
-    }
-});
-document.getElementById('user_password').addEventListener('input', function() {
-    if(this.value.trim().length >= 6) {
-        document.getElementById('password-error').textContent = '';
-    }
-});
+  });
+}
