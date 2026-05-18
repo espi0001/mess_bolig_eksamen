@@ -1,6 +1,6 @@
 <?php
 try {
-    require_once __DIR__ . "/../_.php";
+    require_once __DIR__ . "/../private/_.php";
 
     // Hent email og password fra POST-request
     $user_email = $_POST["user_email"] ?? "";
@@ -19,7 +19,7 @@ try {
     }
 
     // Opret forbindelse til DB
-    require_once __DIR__."/../db.php";
+    require_once __DIR__."/../private/db.php";
 
     // Søg efter bruger i DB baseret på email
     $sql = "SELECT * FROM users WHERE user_email = :email";

@@ -1,6 +1,6 @@
 <?php
 try {
-    require_once __DIR__ . "/../_.php";
+    require_once __DIR__ . "/../private/_.php";
 
     // Henter og validerer brugerens input fra POST-request
     $user_email = _validate_user_email();
@@ -14,7 +14,7 @@ try {
     $user_pk = bin2hex(random_bytes(25));
 
     // opret forbindelsen til databasen
-    require_once __DIR__."/../db.php";
+    require_once __DIR__."/../private/db.php";
 
     // Forbered SQL med placeholders
     $sql = "INSERT INTO users (user_pk, user_email, user_username, user_password) 

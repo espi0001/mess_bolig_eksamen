@@ -6,7 +6,7 @@ if(empty($_SESSION["user_pk"])){
     exit;
 }
 
-require_once __DIR__."/../db.php";
+require_once __DIR__."/../private/db.php";
 
 $pk = $_POST["key"] ?? "";
 
