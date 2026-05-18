@@ -1,12 +1,13 @@
 <?php
 try {
+    // Hent hjælpefunktioner og konstanter (_, _validate, user_email_min osv.)
     require_once __DIR__ . "/../_.php";
 
     // Hent email og password fra POST-request
     $user_email = $_POST["user_email"] ?? "";
     $user_password = $_POST["user_password"] ?? "";
 
-    // Tjekker at email og password ikke er tomme
+    // Tjek at email og password ikke er tomme
     if(strlen($user_email) < user_email_min){
         throw new Exception("Email mangler", 400);
     }
@@ -14,10 +15,10 @@ try {
         throw new Exception("Password mangler", 400);
     }
 
-    // Opret forbindelse til DB
+    // Opret forbindelse til databasen
     require_once __DIR__."/../db.php";
 
-    // Søger efter brugere i DB baseret på email
+    // Søg efter bruger i databasen baseret på email
     $sql = "SELECT * FROM users WHERE user_email = :email";
     $stmt = $_db->prepare($sql);
     $stmt->bindValue(":email", $user_email);
@@ -26,48 +27,35 @@ try {
     // Hent den fundne bruger som et associativt array
     $user = $stmt->fetch();
 
-    // Hvis ingen bruger finden med den mail, afvis login
+    // Hvis ingen bruger findes med den email, afvis login
+    // Vi siger "forkert email eller password" af sikkerhedshensyn
+    // så en angriber ikke kan finde ud af hvilke emails der er registreret
     if(!$user){
         http_response_code(401); // 401 = Unauthorized
-        _("Forkert email eller password");
         echo '<div mix-update="#login-response">Forkert email eller password</div>';
         exit;
     }
 
-    // Sammenligner password med hashed passwword i DB
+    // Sammenlign det indtastede password med den gemte bcrypt-hash i databasen
     if(!password_verify($user_password, $user["user_password"])){
         http_response_code(401);
-        _("Forkert email eller password");
         echo '<div mix-update="#login-response">Forkert email eller password</div>';
         exit;
     }
 
-    // Start session 
+    // Start session og gem brugerens data
     session_start();
-    $_SESSION["user_pk"] = $user["user_pk"];
+    $_SESSION["user_pk"]       = $user["user_pk"];
     $_SESSION["user_username"] = $user["user_username"];
-    $_SESSION["user_email"] = $user["user_email"];
+    $_SESSION["user_email"]    = $user["user_email"];
 
-    // Send succesbesked 
-    _("Logget ind som ".$user["user_username"]);
+    // Redirect til forsiden via MixHTML efter succesfuldt login
     echo '<span mix-redirect="/"></span>';
-    /*    $safe_name = htmlspecialchars($user["user_username"], ENT_QUOTES, 'UTF-8');
-    echo '<div mix-update="#login-response">Logget ind som ' . $safe_name . '</div>'; */
     exit;
 
 } catch(Exception $e) {
-    // Send fejlkode og besked tilbage
+    // Send fejlkode tilbage og vis fejlbesked i login-response div
     http_response_code($e->getCode());
-    _($e->getMessage());
- /*       $code = $e->getCode();
-    if ($code < 100 || $code > 599) {
-        $code = 500;
-    }
-    http_response_code($code);
-    $msg = htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
-    echo '<div mix-update="#login-response">' . $msg . '</div>';
-    */
+    echo '<div mix-update="#login-response">' . htmlspecialchars($e->getMessage()) . '</div>';
     exit;
 }
-
-// PHP replies with a 200 by default
