@@ -82,7 +82,7 @@ if(!$item){
         </div>
 
 <?php if(!$item["is_sold"]): ?>
-    <form mix-post="apis/api-buy-item.php" mix-update="#buy-section">
+    <form mix-post="/apis/api-buy-item.php" mix-update="#buy-section">
         <input type="hidden" name="key" value="<?= htmlspecialchars ($item["pk"]) ?>">
         <button id="buy-section" class="btn-primary" type="submit">
             Køb bolig
