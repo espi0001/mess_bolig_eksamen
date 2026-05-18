@@ -30,13 +30,6 @@ if (session_status() === PHP_SESSION_NONE) {
     </title>
 </head>
 <body>
-    <!--
-    You can do this:
-        if( $active == "index" ){ echo "active" }
-    Or: 
-        $active == "index" ? "active" : ""
-
-    -->
     <nav>
         <a href="/" class="logo">MessBolig</a>
 

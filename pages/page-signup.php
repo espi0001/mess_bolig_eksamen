@@ -21,7 +21,7 @@ require_once __DIR__."/../components/_header.php";
             <button type="submit">Opret bruger</button>
         </form>
 
-        <p>Har du allerede en konto? <a href="login">Log ind</a></p>
+        <p class="redirect-link">Har du allerede en konto? <a href="login">Log ind</a></p>
     </div>
 </main>
 

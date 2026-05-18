@@ -222,7 +222,7 @@ main {
   background: #c0392b;
 }
 
-/* ── Form pages ── */
+/* ── Form pages (login og signup ── */
 main.page-form {
   display: flex;
   align-items: center;
@@ -266,13 +266,29 @@ main.page-form {
   p {
     font-size: 0.85rem;
     color: #666;
-    text-align: center;
+    _text-align: center;
   }
+
   form {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
   }
+
+  .error-login {
+    color: red;
+  }
+}
+
+.form-box p {
+  text-align: left;
+}
+.form-box .redirect-link {
+  text-align: center;
+  a {
+    color: #666;
+  }
+  
 }
 
 /* ── Footer ── */

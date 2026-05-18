@@ -34,3 +34,16 @@ document.getElementById('user_password').addEventListener('input', function() {
         document.getElementById('password-error').textContent = '';
     }
 });
+
+
+// Login
+document.getElementById('user_email').addEventListener('input', function() {
+    if(this.value.trim().length >= 6) {
+        document.getElementById('email-error').textContent = '';
+    }
+});
+document.getElementById('user_password').addEventListener('input', function() {
+    if(this.value.trim().length >= 6) {
+        document.getElementById('password-error').textContent = '';
+    }
+});

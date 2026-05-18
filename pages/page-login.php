@@ -7,16 +7,19 @@ require_once __DIR__."/../components/_header.php";
 <main class="page-form">
     <div class="form-box">
         <h1>Login</h1>
-        <div id="login-response"></div>
+        <div id="login-response" class="error-login"></div>
 
         <form mix-post="/apis/api-login.php" mix-update="#login-response">
-            <input type="email" name="user_email" placeholder="Email">
-            <input type="password" name="user_password" placeholder="Password">
-    
+            <input type="email" id="user_email" name="user_email" placeholder="Email">
+            <p id="email-error"></p>
+
+            <input type="password" id="user_password" name="user_password" placeholder="Password">
+            <p id="password-error"></p>
+
             <button type="submit">Log ind</button>
         </form>
 
-        <p>Har du ikke en konto? <a href="signup">Opret bruger</a></p>
+        <p class="redirect-link">Har du ikke en konto? <a href="signup">Opret bruger</a></p>
     </div>
 </main>
 

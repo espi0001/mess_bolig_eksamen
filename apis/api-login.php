@@ -1,6 +1,5 @@
 <?php
 try {
-    // Hent hjælpefunktioner og konstanter (_, _validate, user_email_min osv.)
     require_once __DIR__ . "/../_.php";
 
     // Hent email og password fra POST-request
@@ -9,16 +8,20 @@ try {
 
     // Tjek at email og password ikke er tomme
     if(strlen($user_email) < user_email_min){
-        throw new Exception("Email mangler", 400);
+        http_response_code(400);
+        echo "<browser mix-update='#email-error'>Email mangler</browser>";
+        exit;
     }
     if(strlen($user_password) < user_password_min){
-        throw new Exception("Password mangler", 400);
+        http_response_code(400);
+        echo "<browser mix-update='#password-error'>Password mangler</browser>";
+        exit;
     }
 
-    // Opret forbindelse til databasen
+    // Opret forbindelse til DB
     require_once __DIR__."/../db.php";
 
-    // Søg efter bruger i databasen baseret på email
+    // Søg efter bruger i DB baseret på email
     $sql = "SELECT * FROM users WHERE user_email = :email";
     $stmt = $_db->prepare($sql);
     $stmt->bindValue(":email", $user_email);
