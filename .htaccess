@@ -9,10 +9,10 @@ RewriteRule ^signup$ pages/page-signup.php [NC,L]
 
 # Generic extensionless PHP routing
 
-# Tjekker om den ønskede fil ikke allerede findes fysisk på serveren
+# Kør kun RewriteRule hvis det der bliver rwquested IKKE er en eksisterende fil
 RewriteCond %{REQUEST_FILENAME} !-f
 
-# Tjekker om den ønskede mappe ikke allerede findes fysisk på serveren
+# Kør kun RewriteRule hvis det der bliver rwquested IKKE er en eksisterende mappe
 RewriteCond %{REQUEST_FILENAME} !-d
 
 # Tjekker om URL'en ikke er en billede, video, etc. og forhindrer omskrivning
