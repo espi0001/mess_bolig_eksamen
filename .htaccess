@@ -23,5 +23,3 @@ RewriteRule ^([^\.]+)$ pages/$1.php [NC,L]
 
 # Hvis siden ikke findes, redirect til 404-siden
 ErrorDocument 404 /pages/page-404.php
-
-DENY FROM ALL
