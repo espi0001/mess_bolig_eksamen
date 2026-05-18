@@ -55,3 +55,10 @@ function _validate_user_password(){
     }
     return $user_password;
 }
+
+function _no_cache(){
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+    header('Clear-Site-Data: "cache", "cookies", "storage", "executionContexts"');
+}
