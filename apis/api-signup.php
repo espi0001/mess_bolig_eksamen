@@ -30,21 +30,78 @@ try {
     // Udfør SQL forespørgslen og gem bruger i browser
     $stmt->execute();
 
-    // Send succesbesked
-    echo "<div mix-update='#signup-response'>Bruger oprettet</div>";
+    // Send succesbesked med nedtælling og redirect
+    echo "
+    <browser mix-update='#signup-response'>
+        <h1>Bruger oprettet</h1>
+        <p>Omdirigerer til login 3 sekunder...</p>
+    </browser>
+    <browser mix-script=\"setTimeout(() => { window.location.href = '/login'; }, 3000)\"></browser>
+
+    ";
+    
     exit;
 } catch(Exception $e) {
     // tjek om email findes i DB
     if(str_contains($e->getMessage(), "Duplicate entry") && str_contains($e->getMessage(), "user_email")){
         http_response_code(409); // 409 = conflict
-        echo "<div mix-update='#signup-response'>Email er allerede i brug</div>";
+        echo "<browser mix-update='#email-error'>Email er allerede i brug</browser>";
         exit;
     }
 
     // Tjek om brugernan findes i DB
     if(str_contains($e->getMessage(), "Duplicate entry") && str_contains($e->getMessage(), "user_username")){
-        http_response_code(409);
-        echo "<div mix-update='#signup-response'>brugernavn er allerede i brug</div>";
+        http_response_code(409);        
+        echo "<browser mix-update='#username-error'>Brugernavn er allerede i brug</browser>";
+        exit;
+    }
+
+    // Email for kort
+    if(str_contains($e->getMessage(), "Email must be at least")){
+        http_response_code(400);
+        echo "<browser mix-update='#email-error'>Email skal være mindst 6 tegn</browser>";
+        exit;
+    }
+
+    // Email for lang
+    if(str_contains($e->getMessage(), "Email must be max")){
+        http_response_code(400);
+        echo "<browser mix-update='#email-error'>Email må max være 50 tegn</browser>";
+        exit;
+    }
+
+    // Email ugyldig format
+    if(str_contains($e->getMessage(), "Invalid email")){
+        http_response_code(400);
+        echo "<browser mix-update='#email-error'>Ugyldig email adresse</browser>";
+        exit;
+    }
+
+    // Brugernavn for kort
+    if(str_contains($e->getMessage(), "Username min")){
+        http_response_code(400);
+        echo "<browser mix-update='#username-error'>Brugernavn skal være mindst 2 tegn</browser>";
+        exit;
+    }
+
+    // Brugernavn for langt
+    if(str_contains($e->getMessage(), "Username max")){
+        http_response_code(400);
+        echo "<browser mix-update='#username-error'>Brugernavn må max være 20 tegn</browser>";
+        exit;
+    }
+
+    // Kodeord for kort
+    if(str_contains($e->getMessage(), "Userpassword min")){
+        http_response_code(400);
+        echo "<browser mix-update='#password-error'>Kodeord skal være mindst 6 tegn</browser>";
+        exit;
+    }
+
+    // Kodeord for langt
+    if(str_contains($e->getMessage(), "Userpassword max")){
+        http_response_code(400);
+        echo "<browser mix-update='#password-error'>Kodeord må max være 50 tegn</browser>";
         exit;
     }
 

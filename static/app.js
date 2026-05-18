@@ -14,3 +14,23 @@ function load_markers(items) {
 
   mix_convert();
 }
+
+
+// Signup 
+document.getElementById('user_username').addEventListener('input', function() {
+    if(this.value.trim().length >= 2) {
+        document.getElementById('username-error').textContent = '';
+    }
+});
+
+document.getElementById('user_email').addEventListener('input', function() {
+    if(this.value.trim().length >= 6) {
+        document.getElementById('email-error').textContent = '';
+    }
+});
+
+document.getElementById('user_password').addEventListener('input', function() {
+    if(this.value.trim().length >= 6 && this.value.trim().length <= 50) {
+        document.getElementById('password-error').textContent = '';
+    }
+});
