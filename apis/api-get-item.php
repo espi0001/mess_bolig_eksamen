@@ -23,30 +23,30 @@ if(!$item){
             <?php endif; ?>
 
             <?php if($item["main_image_path"]): ?>
-            <img src="<?= $item["main_image_path"] ?>" alt="Boligbillede" class="item-img" onerror="this.style.display='none'">
+            <img src="<?= htmlspecialchars ($item["main_image_path"]) ?>" alt="Boligbillede" class="item-img" onerror="this.style.display='none'">
             <?php endif; ?>
 
             <?php if($item["floor_plan_path"]): ?>
-            <img src="<?= $item["floor_plan_path"] ?>" alt="Plantegning" class="item-img" onerror="this.style.display='none'">
+            <img src="<?= htmlspecialchars ($item["floor_plan_path"]) ?>" alt="Plantegning" class="item-img" onerror="this.style.display='none'">
             <?php endif; ?>
 
             <div class="item-info">
-                <h2 class="item-type"><?= $item["type"] ?> </h2>
+                <h2 class="item-type"><?= htmlspecialchars ($item["type"]) ?> </h2>
                 <h2>DKK <?= number_format((float)($item["price"] ?? 0), 0, ',', '.') ?></h2>
             </div>
 
             <div class="item-stats">
                 <div>
                     <h3>Adresse</h3>
-                    <p><?= $item["road_name"] ?> <?= $item["house_number"] ?>, <?= $item["zip_code"] ?> <?= $item["city_name"] ?>  </p>
+                    <p><?= htmlspecialchars ($item["road_name"]) ?> <?= htmlspecialchars ($item["house_number"]) ?>, <?= htmlspecialchars ($item["zip_code"]) ?> <?= htmlspecialchars ($item["city_name"]) ?>  </p>
                 </div>
                 <div>
                     <h3>Grundareal</h3>
-                    <p><?= $item["lot_square_meters"] ?> m²</p>
+                    <p><?= htmlspecialchars ($item["lot_square_meters"]) ?> m²</p>
                 </div>
                 <div>
                     <h3>Boligareal</h3>
-                    <p><?= $item["floor_square_meters"] ?> m²</p>
+                    <p><?= htmlspecialchars ($item["floor_square_meters"]) ?> m²</p>
                 </div>
                 <div>
                     <h3>Pris per. meter</h3>
@@ -54,7 +54,7 @@ if(!$item){
                 </div>
                 <div>
                     <h3>Antal værelser</h3>
-                    <p><?= $item["number_of_rooms"] ?></p>
+                    <p><?= htmlspecialchars ($item["number_of_rooms"]) ?></p>
                 </div>
                 <div>
                     <h3>Månedlige ydelser</h3>
@@ -67,7 +67,7 @@ if(!$item){
                 <?php if($item["energy_label"]): ?>
                 <div>
                     <h3>Energimærke</h3>
-                    <p><?= $item["energy_label"] ?></p>
+                    <p><?= htmlspecialchars ($item["energy_label"]) ?></p>
                 </div>   
                 <?php endif; ?>        
             </div>
@@ -83,7 +83,7 @@ if(!$item){
 
 <?php if(!$item["is_sold"]): ?>
     <form mix-post="apis/api-buy-item.php" mix-update="#buy-section">
-        <input type="hidden" name="key" value="<?= $item["pk"] ?>">
+        <input type="hidden" name="key" value="<?= htmlspecialchars ($item["pk"]) ?>">
         <button id="buy-section" class="btn-primary" type="submit">
             Køb bolig
         </button>
