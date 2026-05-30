@@ -54,6 +54,17 @@ nav {
     text-decoration: none;
   }
 
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .nav-greeting {
+    font-size: 0.9rem;
+    color: #333;
+  }
+
   .btn-login {
     background: #e84040;
     color: #fff;

@@ -2,6 +2,13 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+require_once __DIR__ . "/../private/User.php";
+
+$user = null;
+if (!empty($_SESSION["user_username"])) {
+    $user = new User($_SESSION["user_username"]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +41,8 @@ if (session_status() === PHP_SESSION_NONE) {
         <a href="/" class="logo">MessBolig</a>
 
         <div class="nav-right">
-        <?php if (!empty($_SESSION['user_pk'])): ?>
+        <?php if ($user): ?>
+        <span class="nav-greeting"><?php $user->greet(); ?></span>
         <a href="/apis/api-logout.php" class="btn-login">Log ud</a>
         <?php else: ?>
         <a href="/login" class="btn-login<?php echo ($active ?? '') === 'login' ? ' active' : ''; ?>">Login</a>
