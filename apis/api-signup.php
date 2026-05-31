@@ -1,6 +1,6 @@
 <?php
 try {
-    require_once __DIR__ . "/../private/_.php";
+    require_once __DIR__ . "/../private/_.php"; // Validering af input osv
 
     // Henter og validerer brugerens input fra POST-request
     $user_email = _validate_user_email();
@@ -10,13 +10,13 @@ try {
     // Hash passwordet
     $hashed_password = password_hash($user_password, PASSWORD_DEFAULT);
     
-    // Generer et unikt ID til UUID
+    // Generer unikt ID til UUID
     $user_pk = bin2hex(random_bytes(25));
 
-    // opret forbindelsen til databasen
+    // opret forbindelsen til db
     require_once __DIR__."/../private/db.php";
 
-    // Forbered SQL med placeholders
+    // Forbered SQL med placeholders (safety mod SQL injection)
     $sql = "INSERT INTO users (user_pk, user_email, user_username, user_password) 
             VALUES (:user_pk, :email, :username, :password)";
     $stmt = $_db->prepare($sql);
@@ -27,7 +27,7 @@ try {
     $stmt->bindValue(":username", $user_username);
     $stmt->bindValue(":password", $hashed_password);
 
-    // Udfør SQL forespørgslen og gem bruger i browser
+    // Udfør SQL query'en i DB og gem bruger i browser (opret bruger)
     $stmt->execute();
 
     // Send succesbesked med nedtælling og redirect
@@ -37,19 +37,18 @@ try {
         <p>Omdirigerer til login 3 sekunder...</p>
     </browser>
     <browser mix-script=\"setTimeout(() => { window.location.href = '/login'; }, 3000)\"></browser>
-
     ";
     
     exit;
 } catch(Exception $e) {
-    // tjek om email findes i DB
+    // Email findes i DB
     if(str_contains($e->getMessage(), "Duplicate entry") && str_contains($e->getMessage(), "user_email")){
         http_response_code(409); // 409 = conflict
         echo "<browser mix-update='#email-error'>Email er allerede i brug</browser>";
         exit;
     }
 
-    // Tjek om brugernan findes i DB
+    // Brugernan findes i DB
     if(str_contains($e->getMessage(), "Duplicate entry") && str_contains($e->getMessage(), "user_username")){
         http_response_code(409);        
         echo "<browser mix-update='#username-error'>Brugernavn er allerede i brug</browser>";
@@ -107,6 +106,6 @@ try {
 
     // Alle andre fejl - sender fejlkode og besked tilbage til browseren
     http_response_code($e->getCode());
-    _($e->getMessage());
+    _($e->getMessage()); // XSS safety - Sender rå fejl tilbage
     exit;
 }

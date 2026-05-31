@@ -1,4 +1,6 @@
 <?php
+// Tjek om session allerede er startet så den ikke startes to gange
+// session_status() === PHP_SESSION_NONE betyder at ingen session er aktiv
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -13,7 +15,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <!-- Link til CSS fil -->
     <link rel="stylesheet" href="/static/app.css">
 
-    <!-- Link til Leaflet CSS -->
+    <!-- Link til Leaflet CSS (Kort bibliotek) -->
     <link 
         rel="stylesheet" 
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -35,10 +37,19 @@ if (session_status() === PHP_SESSION_NONE) {
 
         <div class="nav-right">
         <?php if (!empty($_SESSION['user_pk'])): ?>
+        <!-- Er logget ind: vis log ud knap -->
         <a href="/apis/api-logout.php" class="btn-login">Log ud</a>
+
         <?php else: ?>
-        <a href="/login" class="btn-login<?php echo ($active ?? '') === 'login' ? ' active' : ''; ?>">Login</a>
+        <!-- Ikke logget ind: vis login knap --> <!-- Tilføj 'active' hvis vi er på login siden -->
+        <a href="/login" class="btn-login<?php echo ($active ?? '') === 'login' ? ' active' : ''; ?>">Login</a>        
         <?php endif; ?>
         </div>
 
     </nav>
+
+
+    <!-- 
+    Kan også skrive det sådan:
+    <a href="/login" class="btn-login<?= $active ?? '' === 'login' ? ' active' : ''; ?>">Login</a>
+    -->

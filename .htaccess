@@ -1,25 +1,35 @@
-# Tænder Apache's rewrite-engine, så URL'er kan omskrives
+# Tænder Apache's rewrite-engine, så URL'er kan omskrives til interne PHP-filer
 RewriteEngine On
 
+
+# -----------------------------
+# SPECIFIKKE ROUTES
 
 # Går til page-index direkte når URL er tom (forsiden)
 RewriteRule ^$  pages/page-index.php  [NC,L]
 RewriteRule ^login$ pages/page-login.php [NC,L]
 RewriteRule ^signup$ pages/page-signup.php [NC,L]
 
-# Generic extensionless PHP routing
 
-# Kør kun RewriteRule hvis det der bliver rwquested IKKE er en eksisterende fil
+# -----------------------------
+# GENERIC EXTENSIONLESS ROUTING
+
+# Kør kun rewrite hvis det IKKE er en rigtig fil (fx image, css, js osv)
 RewriteCond %{REQUEST_FILENAME} !-f
 
-# Kør kun RewriteRule hvis det der bliver rwquested IKKE er en eksisterende mappe
+# Kør kun rewrite hvis det IKKE er en rigtig mappe
 RewriteCond %{REQUEST_FILENAME} !-d
 
 # Tjekker om URL'en ikke er en billede, video, etc. og forhindrer omskrivning
 RewriteCond %{REQUEST_URI} !(\.png|\.jpg|\.webp|\.gif|\.jpeg|\.zip|\.css|\.svg|\.js|\.pdf)$
 
-# Laver friendly URL ved at tilføje .php og pages/ sti
+# Laver friendly URL ved at tilføje .php og pages/ mappen (omskriver url tio php-fil)
 RewriteRule ^([^\.]+)$ pages/$1.php [NC,L]
 
-# Hvis siden ikke findes, redirect til 404-siden
+
+
+# -----------------------------
+# ERROR HANDLING
+
+# Hvis siden ikke findes, redirect til custom 404-siden
 ErrorDocument 404 /pages/page-404.php

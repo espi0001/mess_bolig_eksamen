@@ -1,5 +1,5 @@
 <?php
-$title = "Side ikke fundet – MessBolig";
+$title = "Side ikke fundet - MessBolig";
 require_once __DIR__."/../components/_header.php";
 ?>
 

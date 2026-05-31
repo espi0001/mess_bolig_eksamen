@@ -1,52 +1,52 @@
 <?php
 try {
-    require_once __DIR__ . "/../private/_.php";
+    require_once __DIR__ . "/../private/_.php"; // til validering 
 
     // Hent email og password fra POST-request
     $user_email = _validate_user_email();
     $user_password = _validate_user_password();
 
-    // Opret forbindelse til DB
-    require_once __DIR__."/../private/db.php";
+    require_once __DIR__."/../private/db.php"; // opretter DB forbindelsen
 
-    // Søg efter bruger i DB baseret på email
+    // Finder bruger i DB baseret på email
     $sql = "SELECT * FROM users WHERE user_email = :email";
     $stmt = $_db->prepare($sql);
     $stmt->bindValue(":email", $user_email);
     $stmt->execute();
-
-    // Hent den fundne bruger som et associativt array
-    $user = $stmt->fetch();
+    $user = $stmt->fetch(); // Hent brugerdata som et associativt array 
 
     // Hvis ingen bruger findes med den email, afvis login
-    // Vi siger "forkert email eller password" af sikkerhedshensyn
-    // så en angriber ikke kan finde ud af hvilke emails der er registreret
+    // Sikkerhedsregel: samme fejlbesked uanset om email findes eller ej -> (så angriber ikke finder ud af hvilke emails der er registreret)
     if(!$user){
         http_response_code(401); // 401 = Unauthorized
         echo '<div mix-update="#login-response">Forkert email eller password</div>';
         exit;
     }
 
-    // Sammenlign det indtastede password med den gemte bcrypt-hash i databasen
+    // Tjekker password mod hashed version i db (bcrypt-hash i db)
     if(!password_verify($user_password, $user["user_password"])){
         http_response_code(401);
         echo '<div mix-update="#login-response">Forkert email eller password</div>';
         exit;
     }
 
-    // Start session og gem brugerens data
+    // Start session når login er godkendt
     session_start();
+
+    // Gemmer brugerdata i session så bruger forbliver logget ind
     $_SESSION["user_pk"]       = $user["user_pk"];
     $_SESSION["user_username"] = $user["user_username"];
     $_SESSION["user_email"]    = $user["user_email"];
 
-    // Redirect til forsiden via MixHTML efter succesfuldt login
+    // Redirect til forsiden efter succesfuldt login
     echo '<span mix-redirect="/"></span>';
     exit;
 
 } catch(Exception $e) {
-    // Send fejlkode tilbage og vis fejlbesked i login-response div
-    http_response_code($e->getCode());
-    echo '<div mix-update="#login-response">' . htmlspecialchars($e->getMessage()) . '</div>';
+    // Returner fejlkode 
+    http_response_code($e->getCode()); 
+    
+    // Viser fejlbeskrd i UI (sikret mod XSS)
+    echo '<div mix-update="#login-response">' . htmlspecialchars($e->getMessage()) . '</div>'; // bruger concatination
     exit;
 }

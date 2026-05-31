@@ -1,1 +1,7 @@
+# Blokerer al direkte adang til denne mappe via browseren
+# INGEN kan tilgå filerne via URL
+
 DENY FROM ALL
+
+
+# ny version af Apache 2.4+ kan bruge Require all denied

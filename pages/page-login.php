@@ -1,6 +1,9 @@
 <?php
 $title = "Login - MessBolig";
+
+// marker login som aktiv i navigationen
 $active = "login";
+
 require_once __DIR__."/../components/_header.php";
 ?>
 
@@ -10,9 +13,11 @@ require_once __DIR__."/../components/_header.php";
         <div id="login-response" class="error-login"></div>
 
         <form mix-post="/apis/api-login.php" mix-update="#login-response">
+            <!-- Email -->
             <input type="email" id="user_email" name="user_email" placeholder="Email">
             <p id="email-error"></p>
 
+            <!-- Password -->
             <input type="password" id="user_password" name="user_password" placeholder="Password">
             <p id="password-error"></p>
 
