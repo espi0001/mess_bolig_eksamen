@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__."/../private/db.php";
+require_once __DIR__."/../private/_.php";
 
 // henter boligernes pk fra URL
 $pk   = $_GET["key"] ?? "";
