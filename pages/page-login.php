@@ -9,7 +9,7 @@ require_once __DIR__."/../components/_header.php";
 
 <main class="page-form">
     <div class="form-box">
-        <h1>Login</h1>
+        <h1>Log ind</h1>
         <div id="login-response" class="error-login"></div>
 
         <form mix-post="/apis/api-login.php" mix-update="#login-response">
@@ -18,7 +18,7 @@ require_once __DIR__."/../components/_header.php";
             <p id="email-error"></p>
 
             <!-- Password -->
-            <input type="password" id="user_password" name="user_password" placeholder="Password">
+            <input type="password" id="user_password" name="user_password" placeholder="Kodeord">
             <p id="password-error"></p>
 
             <button type="submit">Log ind</button>
