@@ -21,7 +21,7 @@ require_once __DIR__."/../components/_header.php";
             <p id="password-error"></p>
 
         
-            <button type="submit">Opret bruger</button>
+            <button type="submit">Opret konto</button>
         </form>
 
         <p class="redirect-link">Har du allerede en konto? <a href="login">Log ind</a></p>
