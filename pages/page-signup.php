@@ -1,4 +1,11 @@
 <?php
+// start session (tjek om bruger er logget på)
+session_start();
+if(isset($_SESSION["user_pk"])){
+    header('Location: /');
+    exit;
+}
+
 $title = "Opret bruger - MessBolig";
 require_once __DIR__."/../components/_header.php";
 ?>
