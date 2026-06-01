@@ -42,12 +42,14 @@ if (session_status() === PHP_SESSION_NONE) {
 
         <?php else: ?>
         <!-- Ikke logget ind: vis login knap --> <!-- Tilføj 'active' hvis vi er på login siden -->
-        <a href="/login" class="btn-login<?php echo ($active ?? '') === 'login' ? ' active' : ''; ?>">Login</a>        
+        <a href="/login" class="btn-login<?php echo ($active ?? '') === 'login' ? ' active' : ''; ?>">Log ind</a>        
         <?php endif; ?>
         </div>
 
     </nav>
 
+
+    
 
     <!-- 
     Kan også skrive det sådan:
