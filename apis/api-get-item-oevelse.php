@@ -28,6 +28,7 @@ exit;
 */
 
 // Step 4: tjek SQL returnerer data fra DB på specifik item pk - http://127.0.0.1/apis/api-get-item-oevelse.php?item_pk=0000b92545a34494b12c6efd133c738e
+/*
 $item_pk = $_GET["item_pk"] ?? "";
 require_once __DIR__ . "/../private/db.php";
 $sql = "SELECT * FROM items WHERE pk = :item_pk";
@@ -38,5 +39,6 @@ $item = $stmt->fetch();
 
 echo json_encode($item);
 exit;
+*/
 ?>
 

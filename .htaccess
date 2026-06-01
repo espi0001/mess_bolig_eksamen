@@ -9,6 +9,7 @@ RewriteEngine On
 RewriteRule ^$  pages/page-index.php  [NC,L]
 RewriteRule ^login$ pages/page-login.php [NC,L]
 RewriteRule ^signup$ pages/page-signup.php [NC,L]
+RewriteRule ^test$ pages/page-exam.php [NC,L]
 
 
 # -----------------------------
@@ -23,7 +24,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 # Tjekker om URL'en ikke er en billede, video, etc. og forhindrer omskrivning
 RewriteCond %{REQUEST_URI} !(\.png|\.jpg|\.webp|\.gif|\.jpeg|\.zip|\.css|\.svg|\.js|\.pdf)$
 
-# Laver friendly URL ved at tilføje .php og pages/ mappen (omskriver url tio php-fil)
+# Laver friendly URL ved at tilføje .php og pages/ mappen (omskriver url til php-fil)
 RewriteRule ^([^\.]+)$ pages/$1.php [NC,L]
 
 

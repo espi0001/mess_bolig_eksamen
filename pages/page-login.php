@@ -1,8 +1,13 @@
 <?php
-$title = "Login - MessBolig";
+// start session (tjek om bruger er logget på)
+session_start();
+if(isset($_SESSION["user_pk"])){
+    header('Location: /');
+    exit;
+}
 
-// marker login som aktiv i navigationen
-$active = "login";
+$title = "Login - MessBolig";
+$active = "login"; // marker login som aktiv i navigationen
 
 require_once __DIR__."/../components/_header.php";
 ?>
