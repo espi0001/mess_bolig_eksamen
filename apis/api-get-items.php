@@ -8,13 +8,13 @@ try {
     // prepare SQL query til DB
     $stmt = $_db->prepare($sql);
     
-    // Udfører forespørgelsen
+    // Udfører query
     $stmt->execute();
 
     // Gemmer alle fundne rækker i et array
     $items = $stmt->fetchAll();
     
-    // Returnerer data som JSON til frontend
+    // Returnerer data som JSON til JS
     echo json_encode($items);
 
 } catch(Exception $e) {
