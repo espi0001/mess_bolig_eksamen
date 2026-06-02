@@ -2,7 +2,7 @@
 require_once __DIR__."/../private/db.php";
 require_once __DIR__."/../private/_.php";
 
-// henter boligernes pk fra URL
+// henter boligernes pk fra URL (associative array -> superglobal)
 $pk   = $_GET["key"] ?? "";
 
 // finder den bolig der matcher med den valgte key

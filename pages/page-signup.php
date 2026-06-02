@@ -7,6 +7,8 @@ if(isset($_SESSION["user_pk"])){
 }
 
 $title = "Opret bruger - MessBolig";
+
+// DIR - den fulde sti - . er concatination
 require_once __DIR__."/../components/_header.php";
 ?>
 

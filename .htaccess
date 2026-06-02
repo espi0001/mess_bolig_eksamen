@@ -1,7 +1,6 @@
 # Tænder Apache's rewrite-engine, så URL'er kan omskrives til interne PHP-filer
 RewriteEngine On
 
-
 # -----------------------------
 # SPECIFIKKE ROUTES
 
