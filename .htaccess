@@ -8,7 +8,6 @@ RewriteEngine On
 RewriteRule ^$  pages/page-index.php  [NC,L]
 RewriteRule ^login$ pages/page-login.php [NC,L]
 RewriteRule ^signup$ pages/page-signup.php [NC,L]
-RewriteRule ^test$ pages/page-exam.php [NC,L]
 
 
 # -----------------------------
